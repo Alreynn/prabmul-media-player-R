@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { Header, AudioBox, MiniPlayer, Footer } from './Components' // Need further assistance 
 import { useStates } from './Hooks/hooks'
 import './App.css'
+import { Header, AudioBox, MiniPlayer, FloatPlayer, Footer } from './Components' // Need further assistance 
 import { RotateCcw, ChevronsLeft, Play, Pause, ChevronsRight, Repeat, ChevronDown } from 'lucide-react'
 import { tak_ingin_sendiri_cover, oke_gas_cover, oke_prabowo_cover, thx_jokowi_cover } from './assets/index'
 import { tak_ingin_sendiri, oke_gas, oke_prabowo, thx_jokowi } from './assets/index'
@@ -15,11 +15,9 @@ const songs = [
 ]
 
 const coverImg = "aspect-square object-cover rounded h-auto";
-const setFloatIconSize = "size-[3.75rem] stroke-[1.75] active:text-neutral-200";
 
 const App = () => {
     const audio = useRef(null);
-    const audioSlider = useRef(null);
     const {
         title, setTitle,
         artistName, setArtistName,
@@ -28,7 +26,6 @@ const App = () => {
         isPlayed, setPlayAudio,
         isShowMini, setShowMini,
         isShowFloat, setShowFloat,
-        isLoop, setLoop
     } = useStates();
     
     // Audio Player
@@ -46,36 +43,28 @@ const App = () => {
     useEffect(() => {
         isPlayed ? audio.current.play() : audio.current.pause();
     }, [isPlayed])
+    const forward = () => audio.current.currentTime += 10;
     
-    const forward = () => { audio.current.currentTime += 10 };
-    const loop = () => {
-        setLoop(!isLoop);
-        audio.current.loop = !isLoop;
-    }
-    
-    // Line 57–89 — Functions to render duration, including currentTime and audio duration.
-    const [currentDuration, setCurrent] = useState(0);
+    const random = (max) => Math.floor(Math.random() * max);
+    // This useEffect with audio eventListener inside of it detects if the song has ended, and it'll shuffle the song played next.
+    // For some reason, this useEffect gives out a lot of re-rendering. I couldn't figure it out what caused this.
+    // Also, sometimes it replays the same song.
+    // Even if a while loop has applied, it instantly crashes the site.
     useEffect(() => {
-        audio.current.addEventListener("timeupdate", () => {
-            let min = Math.floor(audio.current.currentTime / 60);
-                if (min < 10) { min = `0${min}` }
-            let sec = Math.floor(audio.current.currentTime % 60);
-                if (sec < 10) { sec = `0${sec}` }
-            let current = `${min}:${sec}`;
-                if (current === 'NaN:NaN') { current = '00:00'; }
-            setCurrent(current);
-        });
         audio.current.addEventListener("ended", () => {
-            setPlayAudio(false);
+            let rand = random(songs.length);
+            const chosen = songs[rand];
+            play(chosen.title, chosen.artist, chosen.cover, chosen.url);
         })
-        audioSlider.current.max = Math.floor(audio.current.duration);
-        audioSlider.current.value = Math.floor(audio.current.currentTime);
-    });
-    const changeBySlider = () => { // If user slides the slider, the audio currentTime will change.
-        audio.current.currentTime = audioSlider.current.value;
-    }
+    })
     
-    const [durationEnd, setEndDuration] = useState(0);
+    // Detects if user clicks on the different AudioBox, then plays the audio without being it paused.
+    useEffect(() => {
+        setPlayAudio(true);
+    }, [title])
+    
+    // Fetches the audio duration
+    const [durationEnd, setEndDuration] = useState(`00:00`);
     const duration = () => {
         let minutesEnd = Math.floor(audio.current.duration / 60);
             if (minutesEnd < 10) { minutesEnd = `0${minutesEnd}` }
@@ -85,10 +74,6 @@ const App = () => {
             if (musicDuration === 'NaN:NaN') { musicDuration = '00:00'; }
         setEndDuration(musicDuration)
     }
-    // Detects if user clicks on the different AudioBox, then plays the audio without being it paused.
-    useEffect(() => {
-        setPlayAudio(true);
-    }, [title])
     
     const showFloat = () => setShowFloat(!isShowFloat);
     
@@ -111,32 +96,13 @@ const App = () => {
             
             {/* Mini Player */}
             <MiniPlayer
-            audio={audio} isShowMini={isShowMini} setShowMini={setShowMini} showFloat={showFloat} coverPic={coverPic} title={title} artistName={artistName}
-            backward={backward} isPlayed={isPlayed} setPlayAudio={setPlayAudio} funct={() => play(title, artistName, coverPic)} forward={forward} />
+                audio={audio} isShowMini={isShowMini} setShowMini={setShowMini} showFloat={showFloat} coverPic={coverPic} title={title} artistName={artistName}
+                backward={backward} isPlayed={isPlayed} setPlayAudio={setPlayAudio} funct={() => play(title, artistName, coverPic)} forward={forward} />
             
             {/* Float Player */}
-            <div className={`
-            fixed backdrop-blur-[6px] h-[100dvh] overflow-y-hidden rounded-t-[30px] border-t-[1px] z-30 p-3 px-5
-            transition-all duration-500
-            ${isShowFloat ? "visible top-0" : "invisible top-full"}
-            `} onClick={(e) => e.stopPropagation()}>
-                <ChevronDown onClick={showFloat} className="size-2xl" />
-                <img src={coverPic} className={`mt-[1dvh] mb-[1dvh] rounded-2xl ${coverImg} md:h-72`} />
-                <h2 className="font-bold text-2xl -mb-1">{title}</h2>
-                <p className="mb-1">{artistName}</p>
-                <input type="range" ref={audioSlider} onInput={changeBySlider} className="w-full bg-transparent" />
-                <div className="flex justify-between -mt-2">
-                    <p>{currentDuration}</p>
-                    <p>{durationEnd}</p>
-                </div>
-                <div className="flex flex-row justify-evenly items-center">
-                    <RotateCcw onClick={restart} className={`p-3 ${setFloatIconSize}`} />
-                    <ChevronsLeft onClick={backward} className={setFloatIconSize} />
-                    {isPlayed ? <Pause onClick={() => play(title, artistName, coverPic)} className={setFloatIconSize} /> : <Play onClick={() => play(title, artistName, coverPic)} className={setFloatIconSize} />}
-                    <ChevronsRight onClick={forward} className={setFloatIconSize} />
-                    <Repeat onClick={loop} className={`${setFloatIconSize} rounded-xl p-2 ${isLoop ? "bg-white text-[#87CEEB]" : "bg-transparent text-white"}`} />
-                </div>
-            </div>
+            <FloatPlayer
+                audio={audio} isShowFloat={isShowFloat} showFloat={showFloat} coverPic={coverPic} coverImg={coverImg} title={title} artistName={artistName} durationEnd={durationEnd}
+                restart={restart} backward={backward} isPlayed={isPlayed} funct={() => play(title, artistName, coverPic)} forward={forward} />
             
             <Footer />
         </div>

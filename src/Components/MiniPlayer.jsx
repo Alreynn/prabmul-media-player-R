@@ -2,17 +2,20 @@ import { ChevronsLeft, Pause, Play, ChevronsRight } from 'lucide-react'
 
 const setIconSize = "text-center size-[3rem] stroke-[1.5] rounded-full p-1.5 active:text-neutral-200";
 export const MiniPlayer = ({ audio, isShowMini, setShowMini, showFloat, coverPic, title, artistName, backward, isPlayed, setPlayAudio, funct, forward }) => {
+    // When this button is clicked, it'll close the mini player.
     const dropdown = (e) => {
         e.stopPropagation();
         setShowMini(false);
         setPlayAudio(false);
         audio.current.currentTime = 0;
     }
+    
     return (
         <button className={`
-        fixed flex flex-col items-center bg-gradient-to-b from-[#87CEEB] to-blue-300/50 backdrop-blur-[6px] w-full z-10 border-[1px] rounded-xl text-left
+        fixed flex flex-col items-center bg-gradient-to-b from-[#87CEEB] to-blue-300/50 backdrop-blur-[6px] w-full z-10 border rounded-xl text-left
+        md:w-2/3 md:ml-3 xl:w-1/2
         transition-all duration-500
-        ${isShowMini ? "opacity-100 bottom-20" : "opacity-0 pointer-events-none -bottom-16"}
+            ${isShowMini ? "opacity-100 bottom-20" : "opacity-0 pointer-events-none -bottom-16"}
         `} onClick={showFloat}>
             <div className="flex flex-row gap-3 p-3 pb-2 w-full">
                 <img src={coverPic} className="aspect-square object-cover rounded w-[3em]" />
@@ -22,7 +25,11 @@ export const MiniPlayer = ({ audio, isShowMini, setShowMini, showFloat, coverPic
                 </div>
                 <div className="flex items-center" onClick={(e) => e.stopPropagation()}>
                     <ChevronsLeft onClick={backward} className={setIconSize} />
-                    {isPlayed ? <Pause onClick={funct} className={setIconSize} /> : <Play onClick={funct} className={setIconSize} />}
+                    {isPlayed ?
+                        <Pause onClick={funct} className={setIconSize} />
+                    :
+                        <Play onClick={funct} className={setIconSize} />
+                    }
                     <ChevronsRight onClick={forward} className={setIconSize} />
                 </div>
             </div>

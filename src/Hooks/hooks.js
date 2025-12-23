@@ -9,7 +9,6 @@ export const useStates = () => {
     const [isPlayed, setPlayAudio] = useState(false);
     const [isShowMini, setShowMini] = useState(false);
     const [isShowFloat, setShowFloat] = useState(false);
-    const [isLoop, setLoop] = useState(false);
 
     return {
         title, setTitle,
@@ -19,6 +18,5 @@ export const useStates = () => {
         isPlayed, setPlayAudio,
         isShowMini, setShowMini,
         isShowFloat, setShowFloat,
-        isLoop, setLoop
     }
 }
