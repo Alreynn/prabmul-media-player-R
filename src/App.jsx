@@ -13,7 +13,7 @@ const songs = [
     { id: 2, cover: oke_prabowo_cover, url: oke_prabowo, title: 'Oke Gas Prabowo-Gibran Paling Pas', artist: 'Richard Jersey' },
     { id: 3, cover: tak_ingin_sendiri_cover, url: tak_ingin_sendiri, title: 'Tak Ingin Sendiri', artist: 'Dian Piesesha' },
     { id: 4, cover: thx_jokowi_cover, url: thx_jokowi, title: 'Terima Kasih Pak Jokowi', artist: 'Kang Lidan' },
-    { id: 5, cover: mou_koi_nante_shinai_cover, url: mou_koi_nante_shinai, title: 'もう濃いなんてしない (Mou Koi Nante Shinai)', artist: '槇原敬之 (Makihara Noriyuki)' },
+    { id: 5, cover: mou_koi_nante_shinai_cover, url: mou_koi_nante_shinai, title: 'もう恋なんてしない (Mou Koi Nante Shinai)', artist: '槇原敬之 (Makihara Noriyuki)' },
 ]
 
 const coverImg = "aspect-square object-cover rounded h-auto";

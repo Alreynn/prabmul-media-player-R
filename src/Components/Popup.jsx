@@ -4,7 +4,7 @@ import { X } from 'lucide-react'
 
 export const Popup = ({ changesParagraph = "Tidak ada perubahan.", changesList }) => {
     let [isOpen, setIsOpen] = useState(true)
-    function close() {
+    const close = () => {
         setIsOpen(false)
     }
     
