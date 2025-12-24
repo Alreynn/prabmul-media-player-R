@@ -12,16 +12,16 @@ export const MiniPlayer = ({ audio, isShowMini, setShowMini, showFloat, coverPic
     
     return (
         <button className={`
-        fixed flex flex-col items-center bg-gradient-to-b from-[#87CEEB] to-blue-300/50 backdrop-blur-[6px] w-full z-10 border rounded-xl text-left
-        md:w-2/3 md:ml-3 xl:w-1/2
+        fixed flex flex-col items-center bg-gradient-to-b from-[#87CEEB]/50 to-blue-300/50 backdrop-blur-[5px] w-full z-10 border rounded-xl text-left
         transition-all duration-500
+        md:w-3/5 md:ml-3
             ${isShowMini ? "opacity-100 bottom-20" : "opacity-0 pointer-events-none -bottom-16"}
         `} onClick={showFloat}>
             <div className="flex flex-row gap-3 p-3 pb-2 w-full">
                 <img src={coverPic} className="aspect-square object-cover rounded w-[3em]" />
                 <div className="flex flex-col flex-1 min-w-0">
                     <p className="font-bold text-2xl -mb-2 w-6/7 truncate">{title}</p>
-                    <p>{artistName}</p>
+                    <p className="w-6/7 truncate">{artistName}</p>
                 </div>
                 <div className="flex items-center" onClick={(e) => e.stopPropagation()}>
                     <ChevronsLeft onClick={backward} className={setIconSize} />

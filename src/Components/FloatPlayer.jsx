@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { ChevronDown, RotateCcw, ChevronsLeft, Pause, Play, ChevronsRight, Repeat } from 'lucide-react'
 
-const setFloatIconSize = "size-[3.75rem] stroke-[1.75] active:text-neutral-200";
+const setFloatIconSize = "size-[3.75rem] stroke-[1.75] md:size-[3rem] active:text-neutral-200";
 export const FloatPlayer = ({ audio, isShowFloat, showFloat, coverPic, coverImg, title, artistName, durationEnd, restart, backward, isPlayed, funct, forward }) => {
     const audioSlider = useRef(null);
     const [isLoop, setLoop] = useState(false);
@@ -31,20 +31,21 @@ export const FloatPlayer = ({ audio, isShowFloat, showFloat, coverPic, coverImg,
     
     return (
         <div className={`
-        fixed backdrop-blur-[6px] w-full h-[100dvh] overflow-y-hidden rounded-t-[30px] border-t-[1px] z-30 p-3 px-5
+        fixed backdrop-blur-[6px] w-full h-[100dvh] overflow-y-hidden rounded-t-[30px] border-t z-30 p-3 px-5
         transition-all duration-500
-            ${isShowFloat ? "visible top-0" : "invisible top-full"}`}
+        md:w-1/3 md:h-[34rem] md:rounded-b-3xl md:right-4 md:border
+            ${isShowFloat ? "visible bottom-0 md:bottom-20" : "invisible -bottom-full"}`}
         onClick={(e) => e.stopPropagation()}>
             <ChevronDown onClick={showFloat} className="size-2xl" />
             
             {/* Audio data */}
             <img src={coverPic} className={`mt-[1dvh] mb-[1dvh] rounded-2xl ${coverImg} md:h-72`} />
-            <h2 className="font-bold overflow-scroll whitespace-nowrap text-2xl -mb-1">{title}</h2>
-            <p className="mb-1">{artistName}</p>
+            <h2 className="font-bold overflow-scroll whitespace-nowrap text-2xl -mb-1 text-shadow">{title}</h2>
+            <p className="mb-1 text-shadow">{artistName}</p>
             <input type="range" ref={audioSlider} onInput={changeBySlider} className="w-full bg-transparent" />
             <div className="flex justify-between -mt-2">
-                <p>{currentDuration}</p>
-                <p>{durationEnd}</p>
+                <p className="text-shadow">{currentDuration}</p>
+                <p className="text-shadow">{durationEnd}</p>
             </div>
             
             {/* Audio Control */}

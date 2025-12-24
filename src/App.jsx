@@ -1,17 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { useStates } from './Hooks/hooks'
 import './App.css'
-import { Header, AudioBox, MiniPlayer, FloatPlayer, Footer } from './Components' // Need further assistance 
+import { Header, Popup, AudioBox, MiniPlayer, FloatPlayer, Footer } from './Components' // Need further assistance 
 import { RotateCcw, ChevronsLeft, Play, Pause, ChevronsRight, Repeat, ChevronDown } from 'lucide-react'
-import { tak_ingin_sendiri_cover, oke_gas_cover, oke_prabowo_cover, thx_jokowi_cover } from './assets/index'
-import { tak_ingin_sendiri, oke_gas, oke_prabowo, thx_jokowi } from './assets/index'
+import { tak_ingin_sendiri_cover, oke_gas_cover, oke_prabowo_cover, thx_jokowi_cover, mou_koi_nante_shinai_cover } from './assets/index'
+import { tak_ingin_sendiri, oke_gas, oke_prabowo, thx_jokowi, mou_koi_nante_shinai } from './assets/index'
+import changelog from './changelog.json'
 
 // Song collection
 const songs = [
-    { id: 1, cover: tak_ingin_sendiri_cover, url: tak_ingin_sendiri, title: 'Tak Ingin Sendiri', artist: 'Dian Piesesha' },
-    { id: 2, cover: oke_gas_cover, url: oke_gas, title: 'Oke Gas 2', artist: 'Richard Jersey' },
-    { id: 3, cover: oke_prabowo_cover, url: oke_prabowo, title: 'Oke Gas Prabowo-Gibran Paling Pas', artist: 'Richard Jersey' },
+    { id: 1, cover: oke_gas_cover, url: oke_gas, title: 'Oke Gas 2', artist: 'Richard Jersey' },
+    { id: 2, cover: oke_prabowo_cover, url: oke_prabowo, title: 'Oke Gas Prabowo-Gibran Paling Pas', artist: 'Richard Jersey' },
+    { id: 3, cover: tak_ingin_sendiri_cover, url: tak_ingin_sendiri, title: 'Tak Ingin Sendiri', artist: 'Dian Piesesha' },
     { id: 4, cover: thx_jokowi_cover, url: thx_jokowi, title: 'Terima Kasih Pak Jokowi', artist: 'Kang Lidan' },
+    { id: 5, cover: mou_koi_nante_shinai_cover, url: mou_koi_nante_shinai, title: 'もう濃いなんてしない (Mou Koi Nante Shinai)', artist: '槇原敬之 (Makihara Noriyuki)' },
 ]
 
 const coverImg = "aspect-square object-cover rounded h-auto";
@@ -76,20 +78,43 @@ const App = () => {
     }
     
     const showFloat = () => setShowFloat(!isShowFloat);
-    
+
     return (
-        <div className="bg-gradient-to-b from-blue-300/90 to-[#87CEEB] min-h-[100dvh] overflow-hidden font-helvetica text-white">
+        <div className="bg-gradient-to-b from-blue-300/90 to-[#87CEEB] min-h-[100dvh] min-w-full overflow-hidden font-helvetica text-white">
             <audio ref={audio} src={url} onLoadedMetadata={duration} />
             <Header />
+            <Popup changesParagraph={changelog.paragraph} changesList={changelog.list} />
             
             <main className="p-3 px-4">
-                <h1 className="text-3xl font-bold mb-3">Cari lagu yang sesuai dengan kebutuhanmu akan Prabowo-Jokowi.</h1>
-                <h2 className="text-2xl font-bold mb-2">Musik Pilihan Kami</h2>
+                <h1 className="text-3xl font-bold my-3">Cari lagu yang sesuai dengan kebutuhanmu akan Prabowo-Jokowi.</h1>
+                <h2 className="text-2xl font-bold mt-4 mb-2">Musik yang Tersedia</h2>
                 <div className="flex flex-none overflow-auto snap-x snap-mandatory gap-4">
                     {songs.map((item) => {
                         return (
                             <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
                         )
+                    })}
+                </div>
+                
+                <h2 className="text-2xl font-bold mt-4 mb-2">Kesukaan Prabowo</h2>
+                <div className="flex flex-none overflow-auto snap-x snap-mandatory gap-4">
+                    {songs.map((item, index) => {
+                        if (index === 2) {
+                            return (
+                                <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
+                            )
+                        } else { return null };
+                    })}
+                </div>
+                
+                <h2 className="text-2xl font-bold mt-4 mb-2">Lagi Viral</h2>
+                <div className="flex flex-none overflow-auto snap-x snap-mandatory gap-4">
+                    {songs.map((item, index) => {
+                        if (index === 4) {
+                            return (
+                                <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
+                            )
+                        } else { return null };
                     })}
                 </div>
             </main>
@@ -104,6 +129,7 @@ const App = () => {
                 audio={audio} isShowFloat={isShowFloat} showFloat={showFloat} coverPic={coverPic} coverImg={coverImg} title={title} artistName={artistName} durationEnd={durationEnd}
                 restart={restart} backward={backward} isPlayed={isPlayed} funct={() => play(title, artistName, coverPic)} forward={forward} />
             
+            <div className="mt-16"></div>
             <Footer />
         </div>
     )
