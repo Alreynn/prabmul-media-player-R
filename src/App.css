@@ -7,11 +7,18 @@
     src: url('assets/fonts/Helvetica.ttf') format('truetype');
     font-style: normal;
 }
+
 @layer utilities {
     .text-shadow {
         text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
     }
     .text-shadow-popup {
         text-shadow: 1px 1px 100px #000;
+    }
+}
+
+@layer base {
+  :root {
+        --radius: 0.5rem;
     }
 }
