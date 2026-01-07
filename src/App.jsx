@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useStates } from './Hooks/hooks'
 import './App.css'
-import { Header, Popup, Contents, AudioBox, MiniPlayer, FloatPlayer, Footer } from './Components'
+import { Header, Popup, Contents, AudioBox, MiniPlayer, FloatPlayer, Footer, Closed } from './Components'
 import { RotateCcw, ChevronsLeft, Play, Pause, ChevronsRight, Repeat, ChevronDown } from 'lucide-react'
 import useWindowSize from './window.jsx'
 import song from './songs.json'
@@ -85,6 +85,7 @@ const App = () => {
     return (
         <div className="bg-gradient-to-b from-blue-300/90 to-[#87CEEB] min-h-[100dvh] min-w-full overflow-hidden font-helvetica text-white select-none">
             <audio ref={audio} src={url} />
+            <Closed />
             <Header />
             <Popup changesParagraph={changelog.paragraph} changesList={changelog.list} lastUpdated={changelog.lastUpdated} />
             
