@@ -14,7 +14,7 @@ export const MiniPlayer = ({ audio, isShowMini, setShowMini, showFloat, coverPic
         <button className={`
         fixed flex flex-col items-center bg-gradient-to-b from-[#87CEEB]/50 to-blue-300/50 backdrop-blur-[5px] w-full z-10 border rounded-xl text-left
         transition-all duration-500
-        md:w-1/2 md:ml-3 lg:w-3/5
+        sm:ml-3 md:-bottom-16
             ${isShowMini ? "opacity-100 bottom-20" : "opacity-0 pointer-events-none -bottom-16"}
         `} onClick={showFloat}>
             <div className="flex flex-row gap-3 p-3 pb-2 w-full">

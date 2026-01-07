@@ -1,9 +1,10 @@
 {
     "paragraph": "",
     "list": [
-        "Penambahan update popup",
-        "Penambahan lagu: Mou Koi Nante Shinai oleh Noriyuki Makihara",
-        "Penambahan list",
+        "Diubah list 'Lagi Viral' menjadi 'Sempat Viral'",
+        "Perbaikan tampilan pop up",
+        "Perbaikan tampilan Audiobox",
         "Perbaikan pada tampilan agar lebih responsif pada layar yang besar."
-    ]
+    ],
+    "lastUpdated": "7 Januari 2026"
 }
