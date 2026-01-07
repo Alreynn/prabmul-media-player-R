@@ -43,7 +43,7 @@ const App = () => {
     const play = (title, artist, cover, url) => { 
         setTitle(title || "Title");
         setArtistName(artist || "Unknown");
-        setCover(cover || "/src/assets/notfound.png");
+        setCover(cover || "notfound.png");
         setUrl(url);
         
         setPlayAudio(!isPlayed);
@@ -85,7 +85,6 @@ const App = () => {
     return (
         <div className="bg-gradient-to-b from-blue-300/90 to-[#87CEEB] min-h-[100dvh] min-w-full overflow-hidden font-helvetica text-white select-none">
             <audio ref={audio} src={url} />
-            <Closed />
             <Header />
             <Popup changesParagraph={changelog.paragraph} changesList={changelog.list} lastUpdated={changelog.lastUpdated} />
             

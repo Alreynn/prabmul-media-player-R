@@ -2,36 +2,36 @@
     "list": [
         {
             "id": 1,
-            "cover": "/src/assets/cover/okegas2.webp",
-            "url": "/src/assets/audio/Richard_Jersey-Oke_Gas_2.mp3",
+            "cover": "/audio/cover/okegas2.webp",
+            "url": "/audio/audio/Richard_Jersey-Oke_Gas_2.mp3",
             "title": "Oke Gas 2",
             "artist": "Richard Jersey"
         },
         {
             "id": 2,
-            "cover": "/src/assets/cover/oke_gas_prabowo_gibran_paling_pas.webp",
-            "url": "/src/assets/audio/Richard_Jersey-Oke_Gas_Prabowo_Gibran_Paling_Pas.mp3",
+            "cover": "/audio/cover/oke_gas_prabowo_gibran_paling_pas.webp",
+            "url": "/audio/audio/Richard_Jersey-Oke_Gas_Prabowo_Gibran_Paling_Pas.mp3",
             "title": "Oke Gas Prabowo-Gibran Paling Pas",
             "artist": "Richard Jersey"
         },
         {
             "id": 3,
-            "cover": "/src/assets/cover/Tak_Ingin_Sendiri.webp",
-            "url": "/src/assets/audio/Dian_Piesesha-Tak_Ingin_Sendiri.mp3",
+            "cover": "/audio/cover/Tak_Ingin_Sendiri.webp",
+            "url": "/audio/audio/Dian_Piesesha-Tak_Ingin_Sendiri.mp3",
             "title": "Tak Ingin Sendiri",
             "artist": "Dian Piesesha"
         },
         {
             "id": 4,
-            "cover": "/src/assets/cover/terima_kasih_pak_jokowi.webp",
-            "url": "/src/assets/audio/terima_kasih_pak_jokowi.m4a",
+            "cover": "/audio/cover/terima_kasih_pak_jokowi.webp",
+            "url": "/audio/audio/terima_kasih_pak_jokowi.m4a",
             "title": "Terima Kasih Pak Jokowi",
             "artist": "Kang Lidan"
         },
         {
             "id": 5,
-            "cover": "/src/assets/cover/Mou_Koi_Nante_Shinai.webp",
-            "url": "/src/assets/audio/Noriyuki_Makihara-Mo_Koi_Nante_Shinai.mp3",
+            "cover": "/audio/cover/Mou_Koi_Nante_Shinai.webp",
+            "url": "/audio/audio/Noriyuki_Makihara-Mo_Koi_Nante_Shinai.mp3",
             "title": "もう恋なんてしない (Mou Koi Nante Shinai)",
             "artist": "槇原敬之 (Makihara Noriyuki)"
         }
@@ -40,71 +40,71 @@
     "hidden": [
         {
             "id": 1,
-            "cover": "/src/hidden/cover/Gigi_D_Agostino-L_Amour_Toujours.jpg",
-            "url": "/src/hidden/audio/Gigi_D_Agostino-L_Amour_Toujours.mp3",
+            "cover": "/hidden/cover/Gigi_D_Agostino-L_Amour_Toujours.jpg",
+            "url": "/hidden/audio/Gigi_D_Agostino-L_Amour_Toujours.mp3",
             "title": "L'amour Toujours",
             "artist": "Gigi D'Agostino"
         },
         {
             "id": 2,
             "cover": "",
-            "url": "/src/hidden/audio/L_Amour_Toujours-Slowed_Reverb.mp3",
+            "url": "/hidden/audio/L_Amour_Toujours-Slowed_Reverb.mp3",
             "title": "L'amour Toujours (Slowed and Reverb)",
             "artist": "Gigi D'Agostino"
         },
         {
             "id": 3,
             "cover": "",
-            "url": "/src/hidden/audio/Schnuffel-I_Love_You_So-Slowed_Reverb.mp3",
+            "url": "/hidden/audio/Schnuffel-I_Love_You_So-Slowed_Reverb.mp3",
             "title": "I Love You So (Slowed and Reverb)",
             "artist": "Schnuffel"
         },
         {
             "id": 4,
             "cover": "",
-            "url": "/src/hidden/audio/Code_Red-18_Nightcore.mp3",
+            "url": "/hidden/audio/Code_Red-18_Nightcore.mp3",
             "title": "18 (Nightcore)",
             "artist": "Code Red"
         },
         {
             "id": 5,
             "cover": "",
-            "url": "/src/hidden/audio/Code_Red-18_English_Nightcore.mp3",
+            "url": "/hidden/audio/Code_Red-18_English_Nightcore.mp3",
             "title": "18 (English) (Nightcore)",
             "artist": "Code Red"
         },
         {
             "id": 6,
             "cover": "",
-            "url": "/src/hidden/audio/Code_Red-18_Slowed.mp3",
+            "url": "/hidden/audio/Code_Red-18_Slowed.mp3",
             "title": "18 (English) (Slowed)",
             "artist": "Code Red"
         },
         {
             "id": 7,
             "cover": "",
-            "url": "/src/hidden/audio/ATC-Around The World_Nightcore.mp3",
+            "url": "/hidden/audio/ATC-Around The World_Nightcore.mp3",
             "title": "Around The World (Nightcore)",
             "artist": "ATC"
         },
         {
             "id": 8,
             "cover": "",
-            "url": "/src/hidden/audio/ATC-Around_The_World-Slowed_Reverb.mp3",
+            "url": "/hidden/audio/ATC-Around_The_World-Slowed_Reverb.mp3",
             "title": "Around The World (Slowed and Reverb)",
             "artist": "ATC"
         },
         {
             "id": 9,
             "cover": "",
-            "url": "/src/hidden/audio/Bad_Boy-Nightcore.mp3",
+            "url": "/hidden/audio/Bad_Boy-Nightcore.mp3",
             "title": "Bad Boy (Nightcore)",
             "artist": ""
         },
         {
             "id": 10,
             "cover": "",
-            "url": "/src/hidden/audio/Roy_Bee-Kiss_Me_Again-Nightcore.mp3",
+            "url": "/hidden/audio/Roy_Bee-Kiss_Me_Again-Nightcore.mp3",
             "title": "Kiss Me Again (Nightcore)",
             "artist": "Roy Bee"
         }
