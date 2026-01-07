@@ -43,7 +43,7 @@ const App = () => {
     const play = (title, artist, cover, url) => { 
         setTitle(title || "Title");
         setArtistName(artist || "Unknown");
-        setCover(cover || "../public/notfound.png");
+        setCover(cover || "notfound.png");
         setUrl(url);
         
         setPlayAudio(!isPlayed);
