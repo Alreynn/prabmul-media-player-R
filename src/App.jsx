@@ -26,7 +26,7 @@ const App = () => {
     // MiniPlayer and FloatPlayer adjuster by screen width
     const { width } = useWindowSize();
     useEffect(() => {
-        if (width >= 768) {
+        if (width >= 768 && isPlayed) {
             setShowFloat(true);
             setShowMini(false);
         } else if (width < 768 && isShowFloat) {
@@ -36,7 +36,17 @@ const App = () => {
             setShowFloat(false);
             setShowMini(true);
         }
-    }, [width, isPlayed]);
+        
+        if (isShowFloat && (width < 768)) {
+            const original = window.getComputedStyle(document.body).overflow;
+            document.body.style.overflow = 'hidden';
+            return () => document.body.style.overflow = original;
+        }
+    }, [width, isPlayed, isShowFloat]);
+    
+    useEffect(() => {
+        isPlayed ? audio.current.play() : audio.current.pause();
+    }, [isPlayed])
     
     // Audio Player
     const backward = () => audio.current.currentTime -= 10;
@@ -66,7 +76,7 @@ const App = () => {
         setPlayAudio(true);
         
         const ifSongEnd = () => {
-            // Searches for every index in song.hidden, if played url fits song.hidden.url, it stops and makes it true. Else false.
+            // Searches for every index in song.hidden, if played url is from song.hidden, then it's true.
             const isPlayHidden = song.hidden.find(item => url === item.url);
         
             const list = isPlayHidden ? song.hidden : songs;
@@ -102,13 +112,9 @@ const App = () => {
                             return (
                                 <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
                             )
-                        } else { return null };
+                        }
+                        return null;
                     })}
-                    {/* {const item = [songs[2]];
-                        item.map((item) => (
-                            <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
-                        ))
-                    } */}
                 </Contents>
                 
                 <Contents title="Sempat Viral">
@@ -117,7 +123,8 @@ const App = () => {
                             return (
                                 <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
                             )
-                        } else { return null };
+                        }
+                        return null;
                     })}
                 </Contents>
                 

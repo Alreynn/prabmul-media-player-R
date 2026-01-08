@@ -5,6 +5,7 @@ const setFloatIconSize = "size-[3.75rem] stroke-[1.75] md:size-[2.75rem] lg:size
 
 export const FloatPlayer = ({ audio, setShowFloat, setPlayAudio, isShowFloat, showFloat, coverPic, coverImg, title, artistName, backward, isPlayed, funct, forward }) => {
     const audioSlider = useRef(null);
+    
     const [isLoop, setLoop] = useState(false);
     const loop = () => {
         setLoop(!isLoop);
@@ -12,7 +13,7 @@ export const FloatPlayer = ({ audio, setShowFloat, setPlayAudio, isShowFloat, sh
     }
     
     const restart = () => audio.current.currentTime = 0;
-    // Line 14-28 — Fetches the audio current duration.
+    // This useState and useEffect is used for fetching audio duration and current duration.
     const [currentDuration, setCurrent] = useState(0);
     const [durationEnd, setEndDuration] = useState(`00:00`);
     useEffect(() => {
@@ -54,7 +55,7 @@ export const FloatPlayer = ({ audio, setShowFloat, setPlayAudio, isShowFloat, sh
         fixed backdrop-blur-[6px] w-full h-[100dvh] overflow-y-hidden rounded-t-[30px] border-t z-30 p-3 px-5
         transition-all duration-500
         md:w-2/5 md:h-[32rem] md:rounded-3xl md:right-4 md:border md:px-3 lg:px-5 lg:w-1/3
-            ${isShowFloat ? "visible bottom-0 md:bottom-20" : "invisible -bottom-full md:-bottom-1/3"}`}
+            ${isShowFloat ? "visible bottom-0 md:bottom-20" : "invisible -bottom-full md:-bottom-[60lvh]"}`}
         onClick={(e) => e.stopPropagation()}>
             <ChevronDown onClick={showFloat} className="size-2xl md:hidden" />
             <div onClick={(e) => dropdown(e)} className="absolute w-36 h-[.2em] bg-white rounded-2xl top-2 left-0 right-0 mx-auto active:bg-neutral-200 max-md:hidden"></div>

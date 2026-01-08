@@ -1,10 +1,7 @@
 {
-    "paragraph": "",
+    "paragraph": "Penambahan yang sangat amat kecil.",
     "list": [
-        "Diubah list 'Lagi Viral' menjadi 'Sempat Viral'",
-        "Perbaikan tampilan pop up",
-        "Perbaikan tampilan Audiobox",
-        "Perbaikan pada tampilan agar lebih responsif pada layar yang besar."
+        "Penambahan fitur kunci scroll pada saat Float Player terbuka."
     ],
-    "lastUpdated": "7 Januari 2026"
+    "lastUpdated": "8 Januari 2026"
 }
