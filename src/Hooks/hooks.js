@@ -5,6 +5,8 @@ export const useStates = () => {
     const [artistName, setArtistName] = useState("");
     const [coverPic, setCover] = useState("");
     const [url, setUrl] = useState(null);
+    const [lyric, setLyricURL] = useState(null);
+    const [fetchedLyric, setFetchingLyric] = useState([]);
     
     const [isPlayed, setPlayAudio] = useState(false);
     const [isShowMini, setShowMini] = useState(false);
@@ -15,6 +17,8 @@ export const useStates = () => {
         artistName, setArtistName,
         coverPic, setCover,
         url, setUrl,
+        lyric, setLyricURL,
+        fetchedLyric, setFetchingLyric,
         isPlayed, setPlayAudio,
         isShowMini, setShowMini,
         isShowFloat, setShowFloat,

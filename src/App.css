@@ -10,7 +10,7 @@
 
 @layer utilities {
     .text-shadow {
-        text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     }
     .text-shadow-popup {
         text-shadow: 1px 1px 100px #000;

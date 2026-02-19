@@ -18,6 +18,8 @@ const App = () => {
         artistName, setArtistName,
         coverPic, setCover,
         url, setUrl,
+        lyric, setLyricURL,
+        fetchedLyric, setFetchingLyric,
         isPlayed, setPlayAudio,
         isShowMini, setShowMini,
         isShowFloat, setShowFloat,
@@ -50,12 +52,17 @@ const App = () => {
     
     // Audio Player
     const backward = () => audio.current.currentTime -= 10;
-    const play = (title, artist, cover, url) => { 
+    const play = (title, artist, cover, url, lyricURL) => { 
         setTitle(title || "Title");
         setArtistName(artist || "Unknown");
         setCover(cover || "notfound.png");
         setUrl(url);
+        setLyricURL(lyricURL || null);
         
+        setPlayAudio(!isPlayed);
+    }
+    
+    const playPause = () => {
         setPlayAudio(!isPlayed);
         if (audio.current.paused) {
             audio.current.play();
@@ -65,6 +72,19 @@ const App = () => {
             setPlayAudio(false);
         }
     }
+    
+    useEffect(() => {
+        if (!lyric) {
+            setFetchingLyric([]);
+            return;
+        }
+    
+        fetch(lyric)
+            .then(res => res.json())
+            .then(data => setFetchingLyric(data))
+            .catch(() => setFetchingLyric([]));
+    }, [lyric]);
+    
     const random = (max) => Math.floor(Math.random() * max);
     useEffect(() => {
         // Idk what's this one for, since it is AI generated
@@ -82,12 +102,13 @@ const App = () => {
             const list = isPlayHidden ? song.hidden : songs;
             let rand = random(list.length);
             const chosen = list[rand];
-            play(chosen.title, chosen.artist, chosen.cover, chosen.url);
+            play(chosen.title, chosen.artist, chosen.cover, chosen.url, chosen.lyric);
         }
         
         audiocur.addEventListener("ended", ifSongEnd);
         return () => audiocur.removeEventListener("ended", ifSongEnd);
     }, [url]);
+    
     const forward = () => audio.current.currentTime += 10;
     
     const showFloat = () => setShowFloat(!isShowFloat);
@@ -102,7 +123,7 @@ const App = () => {
                 <h1 onDoubleClick={() => setShowHidden(true)} className="text-3xl font-bold my-3">Cari lagu yang sesuai dengan kebutuhanmu akan Prabowo-Jokowi.</h1>
                 <Contents title="Musik yang Tersedia">
                     {songs.map((item) => (
-                        <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
+                        <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url, item.lyric)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
                     ))}
                 </Contents>
                 
@@ -110,7 +131,7 @@ const App = () => {
                     {songs.map((item, index) => {
                         if (index === 2) {
                             return (
-                                <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
+                                <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url, item.lyric)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
                             )
                         }
                         return null;
@@ -121,7 +142,7 @@ const App = () => {
                     {songs.map((item, index) => {
                         if (index === 4) {
                             return (
-                                <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
+                                <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url, item.lyric)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
                             )
                         }
                         return null;
@@ -131,7 +152,7 @@ const App = () => {
                 {isShowHidden && (
                     <Contents title="Absolute Banger (Save Europe)">
                         {song.hidden.map((item) => (
-                            <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
+                            <AudioBox funct={() => play(item.title, item.artist, item.cover, item.url, item.lyric)} id={item.id} coverImg={coverImg} cover={item.cover} title={item.title} />
                         ))}
                     </Contents>
                 )}
@@ -140,12 +161,12 @@ const App = () => {
             {/* Mini Player */}
             <MiniPlayer
                 audio={audio} isShowMini={isShowMini} setShowMini={setShowMini} showFloat={showFloat} coverPic={coverPic} title={title} artistName={artistName}
-                backward={backward} isPlayed={isPlayed} setPlayAudio={setPlayAudio} funct={() => play(title, artistName, coverPic)} forward={forward} />
+                backward={backward} isPlayed={isPlayed} setPlayAudio={setPlayAudio} funct={playPause} forward={forward} />
             
             {/* Float Player */}
             <FloatPlayer
                 audio={audio} setShowFloat={setShowFloat} setPlayAudio={setPlayAudio} isShowFloat={isShowFloat} showFloat={showFloat} coverPic={coverPic} coverImg={coverImg} title={title}
-                artistName={artistName} backward={backward} isPlayed={isPlayed} funct={() => play(title, artistName, coverPic)} forward={forward} />
+                artistName={artistName} backward={backward} isPlayed={isPlayed} funct={playPause} forward={forward} lyric={fetchedLyric} />
             
             <div className="mt-16"></div>
             <Footer />
