@@ -5,9 +5,6 @@ const setFloatIconSize = "size-[3.75rem] stroke-[1.75] md:size-[2.75rem] lg:size
 
 export const FloatPlayer = ({ audio, setShowFloat, setPlayAudio, isShowFloat, showFloat, coverPic, coverImg, title, artistName, backward, isPlayed, funct, forward, lyric }) => {
     const audioSlider = useRef(null);
-<<<<<<< HEAD
-    
-=======
     const sliderRef = useRef(null);
     const lyricRef = useRef([]);
     const [onLyric, setActiveLyric] = useState(0);
@@ -57,7 +54,6 @@ export const FloatPlayer = ({ audio, setShowFloat, setPlayAudio, isShowFloat, sh
     }, [onLyric])
     
     // Checks loop condition.
->>>>>>> test-branch
     const [isLoop, setLoop] = useState(false);
     const loop = () => {
         setLoop(!isLoop);
