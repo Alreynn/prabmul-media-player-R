@@ -33,7 +33,8 @@
             "cover": "/audio/cover/Mou_Koi_Nante_Shinai.webp",
             "url": "/audio/audio/Noriyuki_Makihara-Mo_Koi_Nante_Shinai.mp3",
             "title": "もう恋なんてしない (Mou Koi Nante Shinai)",
-            "artist": "槇原敬之 (Makihara Noriyuki)"
+            "artist": "槇原敬之 (Makihara Noriyuki)",
+            "lyric": "/audio/lyrics/Noriyuki_Makihara-Mo_Koi_Nante_Shinai.json"
         }
     ],
     
@@ -43,14 +44,16 @@
             "cover": "/hidden/cover/Gigi_D_Agostino-L_Amour_Toujours.jpg",
             "url": "/hidden/audio/Gigi_D_Agostino-L_Amour_Toujours.mp3",
             "title": "L'amour Toujours",
-            "artist": "Gigi D'Agostino"
+            "artist": "Gigi D'Agostino",
+            "lyric": "/hidden/lyrics/Gigi_D_Agostino-L_Amour_Toujours.json"
         },
         {
             "id": 2,
             "cover": "",
             "url": "/hidden/audio/L_Amour_Toujours-Slowed_Reverb.mp3",
             "title": "L'amour Toujours (Slowed and Reverb)",
-            "artist": "Gigi D'Agostino"
+            "artist": "Gigi D'Agostino",
+            "lyric": "/hidden/lyrics/L_Amour_Toujours-Slowed_Reverb.json"
         },
         {
             "id": 3,
@@ -85,14 +88,14 @@
             "cover": "",
             "url": "/hidden/audio/ATC-Around The World_Nightcore.mp3",
             "title": "Around The World (Nightcore)",
-            "artist": "ATC"
+            "artist": "ATC (A Touch of Class)"
         },
         {
             "id": 8,
             "cover": "",
             "url": "/hidden/audio/ATC-Around_The_World-Slowed_Reverb.mp3",
             "title": "Around The World (Slowed and Reverb)",
-            "artist": "ATC"
+            "artist": "ATC (A Touch of Class)"
         },
         {
             "id": 9,
@@ -107,6 +110,13 @@
             "url": "/hidden/audio/Roy_Bee-Kiss_Me_Again-Nightcore.mp3",
             "title": "Kiss Me Again (Nightcore)",
             "artist": "Roy Bee"
+        },
+        {
+            "id": 11,
+            "cover": "",
+            "url": "",
+            "title": "My Heart Beats Like a Drum (Nightcore)",
+            "artist": "Unknown"
         }
     ]
 }
